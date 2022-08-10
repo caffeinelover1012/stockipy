@@ -3,16 +3,21 @@ from cfonts import render, say
 import pandas as pd
 import requests
 import yfinance as yf
+import os.path
 
 output = render('Stockipy', colors=['yellow', 'red'], align='center')
 print(output)
 
 OPTIONS = ["Show your Favourites", "Search for a Specific Stock", "Show Today's Top Gainers/Losers", "Edit your Favorites", "Edit Name", "Exit"]
 choice = -1
-def parseContext(file):
-    return (file)
-CTX = parseContext('ctx.txt')
 
+def parseContext():
+    if not os.path.exists('ctx.txt'):
+        with open('ctx.txt', 'w') as f:
+            f.write('readme')
+    else:
+        print("file exists")
+    return ["File"]
 
 def getDefaultDetails(ticker):
     # get data on this ticker
@@ -32,6 +37,7 @@ def prettyPrintDict(dictionary):
     for k, v in dictionary.items():
         print(f"{k}: {v}")
 
+CTX = parseContext()
 # driver
 while (choice)!=6:
     showMenu(OPTIONS)
