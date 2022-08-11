@@ -95,6 +95,7 @@ while (choice) != len(OPTIONS):
     if choice.isnumeric():
         choice = int(choice)
     if (choice == 1):
+        CTX = parseContext()
         print("Fetching data for: ", " ".join(CTX['favorites']))
         for stock in CTX["favorites"]:
             prettyPrintDict(getDefaultDetails(stock))
@@ -122,7 +123,7 @@ while (choice) != len(OPTIONS):
         except:
             print("Invalid Input")
     elif (choice==4):
-        print("Enter all stocks you'd like to graph: ")
+        print("Enter all stocks you'd like to graph (x to stop): ")
         stcks = makeFavsList(p=False)
         print("Enter Time Period. Options: ")
         period = ["1d",  "5d",  "1mo",  "3mo",  "6mo",  "1y",  "2y",  "5y",  "10y",  "ytd",  "max"]
